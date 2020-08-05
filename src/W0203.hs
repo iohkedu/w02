@@ -1,7 +1,5 @@
--- ~\~ language=Haskell filename=src/P03.hs
--- ~\~ begin <<docs/README.md|P03>>[0]
 -- | W2.3 Unsafe IO
-module P03 where
+module W0203 where
 
 import           Data.IORef
 import           System.IO.Unsafe               ( )

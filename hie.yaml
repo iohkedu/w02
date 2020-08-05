@@ -1,0 +1,8 @@
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:w02"
+    - path: "./test"
+      component: "test:w02-tests"
+    - path: "./doctest"
+      component: "test:w02-doctests"
