@@ -61,7 +61,7 @@ tx1 :: Transaction
 tx1 = error "TODO: implement tx1"
 
 -- | A transaction which is invalid, because the sum of input values
--- is greater than the sum of output values.
+-- is smaller than the sum of output values.
 --
 -- >>> processTransaction tx2 genesis
 -- Left ...
@@ -90,6 +90,9 @@ tx4 :: Transaction
 tx4 = error "TODO: implement tx4"
 
 -- | A valid transaction, which can be combined with @'tx4'@.
+--
+-- >>> processTransaction tx5 genesis
+-- Right ...
 --
 -- >>> processTransactions [tx4, tx5] genesis
 -- Right ...
@@ -123,8 +126,31 @@ put = error "TODO: implement put"
 
 -- Subtask W2.4.4
 
+-- |
+-- >>> processTransaction' tx1 genesis
+-- Left ...
+--
+-- >>> processTransaction' tx2 genesis
+-- Left ...
+--
+-- >>> processTransaction' tx3 genesis
+-- Right ...
+--
+-- >>> processTransaction' tx4 genesis
+-- Right ...
+--
+-- >>> processTransaction' tx5 genesis
+-- Right ...
+--
 processTransaction' :: Transaction -> UTxOs -> Either String UTxOs
 processTransaction' = error "TODO: implement processTransaction'"
 
+-- |
+-- >>> processTransactions' [tx3, tx4] genesis
+-- Left ...
+--
+-- >>> processTransactions' [tx4, tx5] genesis
+-- Right ...
+--
 processTransactions' :: [Transaction] -> UTxOs -> Either String UTxOs
 processTransactions' = error "TODO: implement processTransactions'"

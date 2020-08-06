@@ -14,7 +14,12 @@ import System.IO.Unsafe (unsafePerformIO)
 -- Subatask W2.3.1
 
 data Tree a = Leaf a | Node (Tree a) (Tree a)
+    deriving (Show, Read, Eq, Ord)
 
+-- |
+-- >>> relabelTree $ Node (Node (Leaf True) (Leaf False)) (Leaf True)
+-- Node (Node (Leaf (True,1)) (Leaf (False,2))) (Leaf (True,3))
+--
 relabelTree :: Tree a -> IO (Tree (a, Int))
 relabelTree = error "TODO: implement relabelTree"
 
