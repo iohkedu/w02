@@ -5,10 +5,12 @@ module W0201
       -- * Subtask W2.1.1
     , roulette
       -- * Subtask W2.1.2
+    , histogram
+      -- * Subtask W2.1.3
     , gamblersRuin
     ) where
 
-import Numeric.Natural (Natural)
+import Data.Map (Map)
 import System.Random
 
 data Color = Zero | Red | Black
@@ -22,8 +24,17 @@ roulette = error "TODO: implement roulette"
 -- Subtask W2.1.2
 
 -- |
+-- >>> histogram 0
+-- fromList []
+--
+histogram :: Int -> IO (Map Color Int)
+histogram = error "TODO: implement histogram"
+
+-- Subtask W2.1.3
+
+-- |
 -- >>> gamblersRuin 0
 -- 0
 --
-gamblersRuin :: Natural -> IO Natural
+gamblersRuin :: Int -> IO Int
 gamblersRuin = error "TODO: implement gamblersRuin"

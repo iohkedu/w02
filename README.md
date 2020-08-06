@@ -35,6 +35,27 @@ colors with the correct probabilities.
 
 ### Subtask W2.1.2
 
+Implement a function
+```haskell
+histogram :: Int -> IO (Map Color Int)
+```
+
+which gets a number of roulette rolls as argument,
+simulates that many rolls
+and returns a `Map Color Int` which contains the count
+of each observed outcome. Outcomes that did never happen
+should not occur in the result.
+
+So for example, for one execution of `histogram 5`, the simulated
+outcomes could be
+`Red`, `Zero`, `Red`, `Black`, `Black`,
+in which case the result of that execution would be
+```haskell
+fromList [(Zero,1),(Red,2),(Black,2)]
+```
+
+### Subtask W2.1.3
+
 In roulette, When you bet one dollar on red or black and win,
 you get back your one dollar and win an additional dollar.
 When you lose, your one dollar is gone.
@@ -47,7 +68,7 @@ astronomically unlikely. Sooner or later, she will run out of money.)
 
 Implement a function
 ```haskell
-gamblersRuin :: Natural -> IO Natural
+gamblersRuin :: Int -> IO Int
 ```
 
 that simulates this player. It gets the original number of dollars

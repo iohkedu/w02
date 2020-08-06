@@ -46,20 +46,6 @@ executable w020203
   ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
-test-Suite w02-tests
-  type:                 exitcode-stdio-1.0
-  main-is:              Spec.hs
-  hs-source-dirs:       test
-  other-modules:        W0201Spec
-                      , W0204Spec
-  Build-Depends:        base
-                      , hspec
-                      , QuickCheck
-                      , w02
-  build-tool-depends:   hspec-discover:hspec-discover
-  default-language:     Haskell2010
-  ghc-options:          -Wall
-
 test-suite w02-doctests
   type:                 exitcode-stdio-1.0
   main-is:              doctests.hs
