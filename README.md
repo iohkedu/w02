@@ -10,6 +10,50 @@ Please try to write high-quality code at all times!
 This means in particular that you should add comments to all parts
 that are not immediately obvious.
 
+## W2.1 Roulette
+
+In the casino game [roulette](https://en.wikipedia.org/wiki/Roulette), there are 37 pockets numbered from 0 to 36.
+Half of the numbers from 1 to 36 are red, the other half is black.
+The number 0 is special.
+
+We can model possible colors with the following simple Haskell
+datatype:
+```haskell
+data Color = Zero | Red | Black
+   deriving (Show, Read, Eq, Ord,
+```
+
+### Subtask W2.1.1
+
+Implement a function
+```haskell
+roulette :: IO Color
+```
+
+which simulates one random throw at the roulette table and returns
+colors with the correct probabilities.
+
+### Subtask W2.1.2
+
+In roulette, When you bet one dollar on red or black and win,
+you get back your one dollar and win an additional dollar.
+When you lose, your one dollar is gone.
+
+Consider a player who has a certain number of dollars when she
+sits down at the roulette table, and in each round, she bets
+one dollar on red. She keeps playing until she runs out of money.
+(Note that in theory, she could play forever, but this would be
+astronomically unlikely. Sooner or later, she will run out of money.)
+
+Implement a function
+```haskell
+gamblersRuin :: Natural -> IO Natural
+```
+
+that simulates this player. It gets the original number of dollars
+as its single argument and returns the number of steps it took
+to run out of money.
+
 ## W2.2 Dining Philosophers
 
 The [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
@@ -45,7 +89,7 @@ as small as possible and implement most code in the library.
 
 Try to share as much code as possible between subtasks!
 
-### Subtask 2.2.1
+### Subtask W2.2.1
 
 First we want to demonstrate the danger of _deadlock_.
 Use an `MVar ()` for each fork, where an empty `MVar`
@@ -55,7 +99,7 @@ first, then the right fork.
 
 Observe that very soon, there will be deadlock.
 
-### Subtask 2.2.2
+### Subtask W2.2.2
 
 One classic strategy for deadlock avoidance is to impose a _global order_
 on the order in which locks are taken.
@@ -66,7 +110,7 @@ then the fork _with the higher number_.
 Observe that the deadlock problem is fixed and that the philosophers can all
 eat.
 
-### Subtask 2.2.3
+### Subtask W2.2.3
 
 Finally, we want to see how using `STM` avoids the deadlock problem without the
 need for any global order of locks: Represent forks as `TVar Bool`'s,
@@ -90,7 +134,7 @@ import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 ```
 
-### Subtask 2.3.1
+### Subtask W2.3.1
 
 Just to practice working with `IORef`s, write a function
 ```haskell
@@ -108,7 +152,7 @@ counter.
 
 In this part, you should _not_ use `unsafePerformIO`.
 
-### Subtask 2.3.2
+### Subtask W2.3.2
 
 Use `unsafePerformIO` to define a value of type
 ```haskell
@@ -116,7 +160,7 @@ anything :: IORef a
 ```
 Can you see why the presence of such a value is dangerous?
 
-### Subtask 2.3.3
+### Subtask W2.3.3
 
 Use `unsafePerformIO` and `anything` to define a function
 ```haskell
@@ -187,7 +231,7 @@ outputs. In order to refer to an `Output`, we need its
 transaction id and its index, therefore the keys in this
 map are of type `Input`.
 
-### Subtask 2.4.1
+### Subtask W2.4.1
 
 A transaction is called _valid_ if all its inputs refer
 to unspent transaction outputs, and if the sum of the values
@@ -215,7 +259,7 @@ processTransactions :: [Transaction] -> UTxOs -> Either String UTxOs
 that processes many transactions in sequence and aborts if there
 is an error.
 
-### Subtask 2.4.2
+### Subtask W2.4.2
 
 Construct example transactions `tx1`, `tx2`, `tx3`, `tx4` and `tx5`
 and an initial state of unspent transaction outputs `genesis`
@@ -224,7 +268,7 @@ because we have no way to create money here),
 and verify that `processTransaction` and `processTransactions`
 behave as intended.
 
-### Subtask 2.4.3
+### Subtask W2.4.3
 
 For the previous subtask, you will have to write several functions
 of the type
@@ -252,7 +296,7 @@ put :: s -> ErrorState s ()
 ```
 in similar ways as we had done for the individual monads.
 
-### Subtask 2.4.4
+### Subtask W2.4.4
 
 Rewrite `processTransactions` and all the helper functions to use the
 `ErrorState` type.

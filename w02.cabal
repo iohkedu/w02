@@ -12,11 +12,13 @@ custom-setup
 
 library
   hs-source-dirs:       src
-  Exposed-Modules:      W0202
+  Exposed-Modules:      W0201
+                      , W0202
                       , W0203
                       , W0204
   build-depends:        base == 4.14.0.0
                       , containers
+                      , random
   default-language:     Haskell2010
   ghc-options:          -Wall
 
@@ -48,7 +50,8 @@ test-Suite w02-tests
   type:                 exitcode-stdio-1.0
   main-is:              Spec.hs
   hs-source-dirs:       test
-  other-modules:        W0204Spec
+  other-modules:        W0201Spec
+                      , W0204Spec
   Build-Depends:        base
                       , hspec
                       , QuickCheck
