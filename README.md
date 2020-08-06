@@ -15,7 +15,9 @@ that are not immediately obvious.
 The [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 is a classic problem to demonstrate synchronization issues in concurrent
 programming and ways to resolve those problems.
+
 ![illustration](philosophers.png)
+
 _[By Benjamin D. Esham / Wikimedia Commons, CC BY-SA 3.0](https://commons.wikimedia.org/w/index.php?curid=56559)_
 
 `n` philosophers sit aroung a table, between each of them lies a fork.
@@ -99,7 +101,7 @@ where
 data Tree a = Leaf a | Node (Tree a) (Tree a)
 ```
 that assigns unique integer labels from left to right
-to all of the leaves, starting from `0`.
+to all of the leaves, starting from `1`.
 This time, we do not want to use the
 `State` type, but simply make use of an `IORef Int` to hold the
 counter.
@@ -175,10 +177,10 @@ type Index = Int
 ```
 
 In processing transactions, we keep track of "unspent
-transaction outputs" (UTXOs) which is a map indicating
+transaction outputs" (UTxOs) which is a map indicating
 which outputs can still be used as inputs:
 ```haskell
-type UTXOs = Map Input Output
+type UTxOs = Map Input Output
 ```
 The outputs contained in this map are exactly the unspent
 outputs. In order to refer to an `Output`, we need its
@@ -198,40 +200,43 @@ disappears.)
 
 In the light of this, implement a function
 ```haskell
-processTransaction :: Transaction -> UTXOs -> Either String UTXOs
+processTransaction :: Transaction -> UTxOs -> Either String UTxOs
 ```
 that checks if a transaction is valid and at the same time
-updates the UTXOs by removing the ones that are used by the
-transaction. If the transaction is invalid, an error message
-should be produced.
+updates the UTxOs by removing the ones that are used by the
+transaction
+and adding the ones that are newly created by the transaction.
+If the transaction is invalid, an error message should be produced.
 
 Then, write a function
 ```haskell
-processTransactions :: [Transaction] -> UTXOs -> Either String UTXOs
+processTransactions :: [Transaction] -> UTxOs -> Either String UTxOs
 ```
 that processes many transactions in sequence and aborts if there
 is an error.
 
 ### Subtask 2.4.2
 
-Construct a number of small example transactions and an initial
-state of unspent transaction outputs (that determines the initial
-money distribution, because we have no way to create money here),
-and verify that `processTransactions` behaves as intended.
+Construct example transactions `tx1`, `tx2`, `tx3`, `tx4` and `tx5`
+and an initial state of unspent transaction outputs `genesis`
+(that determines the initial money distribution,
+because we have no way to create money here),
+and verify that `processTransaction` and `processTransactions`
+behave as intended.
 
 ### Subtask 2.4.3
 
 For the previous subtask, you will have to write several functions
 of the type
 ```haskell
-UTXOs -> Either String (a, UTXOs)
+UTxOs -> Either String (a, UTxOs)
 ```
 This looks like a combination of the `State` type with `Either`.
 
 Let's define
 ```haskell
 newtype ErrorState s a =
-    ErrorState { runErrorState :: s -> Either String (a, s) }
+    ErrorState {runErrorState :: s -> Either String (a, s)}
 ```
 
 Define a `Monad` instance (and the implied `Functor` and `Applicative` instances)

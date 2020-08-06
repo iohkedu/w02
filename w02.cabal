@@ -48,8 +48,7 @@ test-Suite w02-tests
   type:                 exitcode-stdio-1.0
   main-is:              Spec.hs
   hs-source-dirs:       test
-  other-modules:        W0203Spec
-                      , W0204Spec
+  other-modules:        W0204Spec
   Build-Depends:        base
                       , hspec
                       , QuickCheck
