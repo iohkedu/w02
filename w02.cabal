@@ -14,20 +14,42 @@ library
   hs-source-dirs:       src
   Exposed-Modules:      W0202
                       , W0203
-                      , W0205
+                      , W0204
   build-depends:        base == 4.14.0.0
-                      , array
                       , containers
   default-language:     Haskell2010
   ghc-options:          -Wall
+
+executable w020201
+  hs-source-dirs:      app
+  main-is:             W020201.hs
+  build-depends:       base >= 4.7 && < 5
+                     , w02
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+executable w020202
+  hs-source-dirs:      app
+  main-is:             W020202.hs
+  build-depends:       base >= 4.7 && < 5
+                     , w02
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+executable w020203
+  hs-source-dirs:      app
+  main-is:             W020203.hs
+  build-depends:       base >= 4.7 && < 5
+                     , w02
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
 
 test-Suite w02-tests
   type:                 exitcode-stdio-1.0
   main-is:              Spec.hs
   hs-source-dirs:       test
-  other-modules:        W0202Spec
-                      , W0203Spec
-                      , W0205Spec
+  other-modules:        W0203Spec
+                      , W0204Spec
   Build-Depends:        base
                       , hspec
                       , QuickCheck

@@ -1,5 +1,5 @@
--- | W2.5 Transactions
-module W0205 where
+-- | W2.4 Transactions
+module W0204 where
 
 import Data.Map
 
@@ -27,13 +27,13 @@ type Id = Int
 
 type UTXOs = Map Input Output
 
--- | Subtask 2.5.1
+-- | Subtask 2.4.1
 processTransactions :: [Transaction] -> UTXOs -> Either String UTXOs
 processTransactions = undefined
 
--- | Subtask 2.5.2
+-- | Subtask 2.4.2
 
--- | Subtask 2.5.3
+-- | Subtask 2.4.3
 --   Redefine UTXOs as
 --  type UTXOs = Either String (a, UTXOs)
 newtype ErrorState s a = ErrorState {runErrorState :: s -> Either String (a, s)}
@@ -47,4 +47,4 @@ get = undefined
 put :: s -> ErrorState s ()
 put = undefined
 
--- | Subtask 2.5.4
+-- | Subtask 2.4.4
