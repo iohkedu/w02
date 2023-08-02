@@ -10,8 +10,8 @@ module W0201
     , gamblersRuin
     ) where
 
-import Data.Map (Map)
-import System.Random
+import           Data.Map      (Map)
+import           System.Random
 
 data Color = Zero | Red | Black
     deriving (Show, Read, Eq, Ord, Bounded, Enum)
